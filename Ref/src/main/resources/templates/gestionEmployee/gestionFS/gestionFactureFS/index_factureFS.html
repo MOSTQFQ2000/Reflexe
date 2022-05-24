@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <title>Home </title>
+</head>
+
+
+<body>
+
+<div class="container my-2">
+    <h1>La liste des factures service</h1>
+    <table border="1" class = "table table-striped table-responsive-md"s>
+        <thead>
+        <tr>
+            <th>Numero de la facture</th>
+            <th>Designation </th>
+            <th>Quantité </th>
+            <th>Prix HT</th>
+            <th>Total HT</th>
+            <th>Total TTC</th>
+            <th>Taxe</th>
+            <th>Type de paiement</th>
+
+            <th>Client ID</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="f : ${factureFS}">
+            <td th:text= "${f.num_factureFS}"></td>
+            <td th:text= "${f.designationFS}"></td>
+            <td th:text= "${f.quantitee}"></td>
+            <td th:text= "${f.prix_ht}"></td>
+            <td th:text= "${f.total_ht}"></td>
+            <td th:text= "${f.total_ttc}"></td>
+            <td th:text= "${f.taxe}"></td>
+            <td th:text= "${f.type_de_paiement}"></td>
+            <td th:text= "${f.client.id}"></td>
+
+
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+<a th:href = "@{/gererClient}"> Retour à la liste des clients</a>
+</body>
+</html>

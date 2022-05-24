@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <title>Home </title>
+</head>
+
+
+<body>
+
+<div class="container my-2">
+    <h1>La liste des factures clients</h1> <a th:href = "@{/ajoutFactureClient}" class="btn btn-primary btn-sm mb-3"> Ajouter une facture client </a>
+    <table border="1" class = "table table-striped table-responsive-md"s>
+        <thead>
+        <tr>
+            <th>Numéro de facture </th>
+            <th>Désignation </th>
+            <th>Prix_ht </th>
+            <th>Total_ht </th>
+            <th>Total_ttc </th>
+            <th>Taxe </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="f : ${listFC}">
+            <td th:text= "${f.getNum_factureFC()}"></td>
+            <td th:text= "${f.getDesignation()}"></td>
+            <td th:text= "${f.getPrix_ht()}"></td>
+            <td th:text= "${f.getTotal_ht()}"></td>
+            <td th:text= "${f.getTotal_ttc()}"></td>
+            <td th:text= "${f.getTaxe()}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

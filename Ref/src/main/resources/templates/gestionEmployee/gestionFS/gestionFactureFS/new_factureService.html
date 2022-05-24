@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Gestion des factures services</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>les factures Service</h1>
+    <hr>
+    <h2>L'ajout d'une facture service</h2>
+
+    <script type="text/javascript">
+        function Calculer(){
+            document.getElementById("total_ht").value= document.getElementById("quantitee").value * document.getElementById("prix_ht").value;
+            document.getElementById("total_ttc").value= document.getElementById("total_ht").value * (1+document.getElementById("taxe").value/100);
+        }
+
+
+
+
+    </script>
+
+    <form action="#" th:action="@{/saveFactureService}" th:object="${dataPojo}" method="POST">
+
+        <input type="hidden"   th:field="*{idC}"  />
+
+        Numéro de facture : <input type="text" th:field="*{num_factureFS}"  placeholder="Numéro de facture" class="form-control mb-4 col-4">
+
+        Désignation : <input type="text" th:field="*{designationFS}" placeholder="Désignation" class="form-control mb-4 col-4">
+
+        Quantité : <input type="text" name="quantitee" th:field="*{quantitee}"  class="form-control mb-4 col-4">
+
+        Prix_ht : <input type="text" name="prix_ht" th:field="*{prix_ht}"  class="form-control mb-4 col-4">
+
+        <input type="hidden" name="total_ht" th:field="*{total_ht}"  class="form-control mb-4 col-4">
+
+        <input type="hidden" name="total_ttc" th:field="*{total_ttc}" placeholder="" class="form-control mb-4 col-4">
+
+        Taxe :<input type="text" name="taxe" th:field="*{taxe}" placeholder="Le role" class="form-control mb-4 col-4">
+
+        Type de paiement : <select th:field="*{type_de_paiement}" >
+        <nom>type_de_paiement</nom>
+        <libellé>Type de paiement : </libellé>
+        <option value="Chèque">Chèque</option>
+        <option value="CB">CB</option>
+        <option value="Vérement">Vérement</option>
+        <option value="test">test</option>
+    </select>
+        <br>
+        <br>
+        <br>
+
+
+
+        <button type="submit" onclick="Calculer();" class="btn btn-info col-2"> Ajouter Facture Service</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "@{/ajouterFS}">Retour à la liste des factures</a>
+</div>
+</body>
+</html>
